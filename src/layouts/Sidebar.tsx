@@ -26,9 +26,10 @@ import { Button, buttonStyles } from "../components/Button";
 import { twMerge } from "tailwind-merge";
 import { playlists, subscriptions } from "../data/sidebar";
 import { useSidebarContext } from "../contexts/SidebarContext";
+import { HeaderFirstSection } from "./Header";
 
 export function Sidebar() {
-  const { isLargeOpen, isSmallOpen } = useSidebarContext();
+  const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
   return (
     <>
       <aside
@@ -45,11 +46,20 @@ export function Sidebar() {
         />
         <SmallSidebarItem Icon={LibrarySquare} title="Library" url="/library" />
       </aside>
+      {isSmallOpen && (
+        <div
+          onClick={close}
+          className="lg:hidden fixed inset-0 z-[200] bg-secondary-dark opacity-50"
+        />
+      )}
       <aside
-        className={`w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2  hidden ${
+        className={`w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
-        }`}
+        } ${isSmallOpen ? "flex z-[200] bg-white max-h-screen" : "hidden"}`}
       >
+        <div className="lg:hidden pt-2 pb-4 px-2 sticky top-0 bg-white">
+          <HeaderFirstSection />
+        </div>
         <LargeSidebarSection>
           <LargeSidebarItem isActive IconOrImgUrl={Home} title="Home" url="/" />
           <LargeSidebarItem

@@ -14,22 +14,10 @@ import { useSidebarContext } from "../contexts/SidebarContext";
 
 export function Header() {
   const [fullWidthSearch, setFullWidthSearch] = useState(false);
-  const { toggle } = useSidebarContext();
+
   return (
     <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">
-      <div
-        className={`gap-4 items-center flex-shrink-0 ${
-          fullWidthSearch ? "hidden" : "flex"
-        } `}
-      >
-        <Button onClick={toggle} variant="ghost" size="icon">
-          <AlignJustify />
-        </Button>
-        <a href="/" className="flex">
-          <img src={logo} className="h-6" alt="Logo" />
-          VugTube
-        </a>
-      </div>
+      <HeaderFirstSection hidden={fullWidthSearch} />
       <form
         className={` gap-4 flex-grow justify-center ${
           fullWidthSearch ? "flex" : "hidden md:flex"
@@ -86,6 +74,31 @@ export function Header() {
           <UserRound />
         </Button>
       </div>
+    </div>
+  );
+}
+
+type HeaderFirstSectionProps = {
+  hidden?: boolean;
+};
+
+export function HeaderFirstSection({
+  hidden = false,
+}: HeaderFirstSectionProps) {
+  const { toggle } = useSidebarContext();
+  return (
+    <div
+      className={`gap-4 items-center flex-shrink-0 ${
+        hidden ? "hidden" : "flex"
+      } `}
+    >
+      <Button onClick={toggle} variant="ghost" size="icon">
+        <AlignJustify />
+      </Button>
+      <a href="/" className="flex">
+        <img src={logo} className="h-6" alt="Logo" />
+        VugTube
+      </a>
     </div>
   );
 }
