@@ -10,9 +10,11 @@ import {
   Mic,
   Search,
 } from "lucide-react";
+import { useSidebarContext } from "../contexts/SidebarContext";
 
 export function Header() {
   const [fullWidthSearch, setFullWidthSearch] = useState(false);
+  const { toggle } = useSidebarContext();
   return (
     <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">
       <div
@@ -20,7 +22,7 @@ export function Header() {
           fullWidthSearch ? "hidden" : "flex"
         } `}
       >
-        <Button variant="ghost" size="icon">
+        <Button onClick={toggle} variant="ghost" size="icon">
           <AlignJustify />
         </Button>
         <a href="/" className="flex">
