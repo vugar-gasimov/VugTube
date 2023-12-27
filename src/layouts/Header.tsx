@@ -43,10 +43,10 @@ export function Header() {
           <Button className="py-2 px-4 rounded-r-full border-secondary-border border border-l-0 flex-shrink-0">
             <Search />
           </Button>
-          <Button type="button" size="icon" className="flex-shrink-0">
-            <Mic strokeWidth={2} />
-          </Button>
         </div>
+        <Button type="button" size="icon" className="flex-shrink-0">
+          <Mic />
+        </Button>
       </form>
       <div
         className={`flex-shrink-0 md:gap-2 ${
@@ -95,7 +95,7 @@ export function HeaderFirstSection({
       <Button onClick={toggle} variant="ghost" size="icon">
         <AlignJustify />
       </Button>
-      <a href="/" className="flex">
+      <a href="/" className="flex font-bold text-green-500">
         <img src={logo} className="h-6" alt="Logo" />
         VugTube
       </a>
